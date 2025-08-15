@@ -101,14 +101,14 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ message, isLatest = false
                 
                 <button
                   className="p-1 rounded hover:bg-gray-100 transition-colors"
-                  title="赞"
+                  title="点赞"
                 >
                   <ThumbsUp className="w-3 h-3 text-gray-500" />
                 </button>
                 
                 <button
                   className="p-1 rounded hover:bg-gray-100 transition-colors"
-                  title="踩"
+                  title="点踩"
                 >
                   <ThumbsDown className="w-3 h-3 text-gray-500" />
                 </button>
