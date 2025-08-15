@@ -1,58 +1,72 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
   <defs>
     <linearGradient id="brainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1" />
+      <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#2563EB;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1D4ED8;stop-opacity:1" />
     </linearGradient>
-    <linearGradient id="sparkleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#fbbf24;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:1" />
+    <linearGradient id="highlightGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#60A5FA;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#3B82F6;stop-opacity:0.3" />
     </linearGradient>
   </defs>
   
-  <!-- Background Circle -->
-  <circle cx="50" cy="50" r="45" fill="url(#brainGradient)" opacity="0.1"/>
+  <!-- Background circle -->
+  <circle cx="50" cy="50" r="48" fill="url(#brainGradient)" stroke="#1E40AF" stroke-width="2"/>
   
-  <!-- Brain Shape -->
-  <path d="M30 40 Q25 35 30 30 Q35 25 45 30 Q55 25 65 30 Q70 35 65 40 Q70 45 65 50 Q70 55 65 60 Q60 65 50 60 Q40 65 35 60 Q30 55 35 50 Q30 45 30 40 Z" 
-        fill="url(#brainGradient)" 
-        stroke="white" 
-        stroke-width="2"/>
+  <!-- Brain shape -->
+  <path d="M30 35 C25 30, 35 25, 40 30 C45 25, 55 25, 60 30 C65 25, 75 30, 70 35 C75 40, 70 50, 65 45 C70 55, 60 60, 55 55 C50 60, 40 60, 35 55 C30 60, 20 55, 25 50 C20 45, 25 35, 30 35 Z" 
+        fill="white" 
+        opacity="0.9"/>
   
-  <!-- Brain Details -->
-  <path d="M35 35 Q40 40 45 35" fill="none" stroke="white" stroke-width="1.5" opacity="0.8"/>
-  <path d="M55 35 Q60 40 65 35" fill="none" stroke="white" stroke-width="1.5" opacity="0.8"/>
-  <path d="M40 45 Q45 50 50 45" fill="none" stroke="white" stroke-width="1.5" opacity="0.8"/>
-  <path d="M50 45 Q55 50 60 45" fill="none" stroke="white" stroke-width="1.5" opacity="0.8"/>
+  <!-- Brain details -->
+  <path d="M35 40 C40 35, 45 40, 50 35 C55 40, 60 35, 65 40" 
+        stroke="url(#brainGradient)" 
+        stroke-width="2" 
+        fill="none" 
+        opacity="0.6"/>
   
-  <!-- Neural Connections -->
-  <circle cx="38" cy="38" r="2" fill="white" opacity="0.9"/>
-  <circle cx="50" cy="42" r="2" fill="white" opacity="0.9"/>
-  <circle cx="62" cy="38" r="2" fill="white" opacity="0.9"/>
-  <circle cx="45" cy="52" r="2" fill="white" opacity="0.9"/>
-  <circle cx="55" cy="52" r="2" fill="white" opacity="0.9"/>
+  <path d="M32 45 C37 50, 42 45, 47 50 C52 45, 57 50, 62 45" 
+        stroke="url(#brainGradient)" 
+        stroke-width="2" 
+        fill="none" 
+        opacity="0.6"/>
   
-  <!-- Sparkle Effects -->
-  <g fill="url(#sparkleGradient)">
-    <path d="M20 25 L22 28 L25 25 L22 22 Z" opacity="0.8"/>
-    <path d="M75 30 L77 33 L80 30 L77 27 Z" opacity="0.8"/>
-    <path d="M25 70 L27 73 L30 70 L27 67 Z" opacity="0.8"/>
-    <path d="M80 65 L82 68 L85 65 L82 62 Z" opacity="0.8"/>
-  </g>
+  <!-- AI circuit pattern -->
+  <circle cx="42" cy="38" r="2" fill="url(#brainGradient)"/>
+  <circle cx="50" cy="42" r="2" fill="url(#brainGradient)"/>
+  <circle cx="58" cy="38" r="2" fill="url(#brainGradient)"/>
+  <circle cx="45" cy="48" r="2" fill="url(#brainGradient)"/>
+  <circle cx="55" cy="48" r="2" fill="url(#brainGradient)"/>
   
-  <!-- Orbiting Dots -->
-  <g>
-    <circle cx="50" cy="15" r="1.5" fill="#3b82f6" opacity="0.6">
-      <animateTransform attributeName="transform" type="rotate" values="0 50 50;360 50 50" dur="8s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="85" cy="50" r="1.5" fill="#3b82f6" opacity="0.6">
-      <animateTransform attributeName="transform" type="rotate" values="90 50 50;450 50 50" dur="8s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="50" cy="85" r="1.5" fill="#3b82f6" opacity="0.6">
-      <animateTransform attributeName="transform" type="rotate" values="180 50 50;540 50 50" dur="8s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="15" cy="50" r="1.5" fill="#3b82f6" opacity="0.6">
-      <animateTransform attributeName="transform" type="rotate" values="270 50 50;630 50 50" dur="8s" repeatCount="indefinite"/>
-    </circle>
-  </g>
+  <!-- Connecting lines -->
+  <line x1="42" y1="38" x2="50" y2="42" stroke="url(#brainGradient)" stroke-width="1.5" opacity="0.5"/>
+  <line x1="50" y1="42" x2="58" y2="38" stroke="url(#brainGradient)" stroke-width="1.5" opacity="0.5"/>
+  <line x1="50" y1="42" x2="45" y2="48" stroke="url(#brainGradient)" stroke-width="1.5" opacity="0.5"/>
+  <line x1="50" y1="42" x2="55" y2="48" stroke="url(#brainGradient)" stroke-width="1.5" opacity="0.5"/>
+  
+  <!-- Sparkle effects -->
+  <path d="M25 25 L27 27 L25 29 L23 27 Z" fill="#FBBF24" opacity="0.8">
+    <animateTransform attributeName="transform" 
+                      type="rotate" 
+                      values="0 25 27;360 25 27" 
+                      dur="3s" 
+                      repeatCount="indefinite"/>
+  </path>
+  
+  <path d="M75 20 L77 22 L75 24 L73 22 Z" fill="#FBBF24" opacity="0.8">
+    <animateTransform attributeName="transform" 
+                      type="rotate" 
+                      values="0 75 22;-360 75 22" 
+                      dur="4s" 
+                      repeatCount="indefinite"/>
+  </path>
+  
+  <path d="M20 70 L22 72 L20 74 L18 72 Z" fill="#FBBF24" opacity="0.8">
+    <animateTransform attributeName="transform" 
+                      type="rotate" 
+                      values="0 20 72;360 20 72" 
+                      dur="2.5s" 
+                      repeatCount="indefinite"/>
+  </path>
 </svg>
