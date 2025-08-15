@@ -23,6 +23,16 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ message, isLatest = false
     }
   };
 
+  const handleLike = () => {
+    // 处理点赞逻辑
+    console.log('点赞消息:', message.id);
+  };
+
+  const handleDislike = () => {
+    // 处理点踩逻辑
+    console.log('点踩消息:', message.id);
+  };
+
   return (
     <div className={`flex ${isUser ? 'justify-end' : 'justify-start'} fade-in`}>
       <div className={`flex space-x-3 max-w-3xl ${isUser ? 'flex-row-reverse space-x-reverse' : ''}`}>
@@ -100,17 +110,19 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ message, isLatest = false
                 </button>
                 
                 <button
+                  onClick={handleLike}
                   className="p-1 rounded hover:bg-gray-100 transition-colors"
                   title="点赞"
                 >
-                  <ThumbsUp className="w-3 h-3 text-gray-500" />
+                  <ThumbsUp className="w-3 h-3 text-gray-500 hover:text-green-600" />
                 </button>
                 
                 <button
+                  onClick={handleDislike}
                   className="p-1 rounded hover:bg-gray-100 transition-colors"
                   title="点踩"
                 >
-                  <ThumbsDown className="w-3 h-3 text-gray-500" />
+                  <ThumbsDown className="w-3 h-3 text-gray-500 hover:text-red-600" />
                 </button>
               </div>
             )}
