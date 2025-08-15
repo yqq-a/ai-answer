@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <linearGradient id="brainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="circuitGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background Circle -->
+  <circle cx="50" cy="50" r="45" fill="url(#brainGradient)" stroke="#1e40af" stroke-width="2"/>
+  
+  <!-- Brain Shape -->
+  <path d="M30 35 C25 30, 25 25, 32 25 C35 20, 40 20, 42 25 C45 22, 50 22, 52 25 C55 22, 60 22, 62 25 C65 20, 70 20, 68 25 C75 25, 75 30, 70 35 C72 40, 70 45, 65 45 C70 50, 68 55, 62 55 C65 60, 60 65, 55 62 C50 65, 45 65, 42 62 C35 65, 30 60, 32 55 C25 55, 23 50, 28 45 C23 45, 25 40, 30 35 Z" 
+        fill="white" opacity="0.9"/>
+  
+  <!-- Neural Network Lines -->
+  <g stroke="url(#circuitGradient)" stroke-width="2" fill="none" opacity="0.7">
+    <!-- Horizontal connections -->
+    <line x1="35" y1="40" x2="45" y2="40"/>
+    <line x1="55" y1="40" x2="65" y2="40"/>
+    <line x1="35" y1="50" x2="45" y2="50"/>
+    <line x1="55" y1="50" x2="65" y2="50"/>
+    
+    <!-- Vertical connections -->
+    <line x1="40" y1="35" x2="40" y2="45"/>
+    <line x1="50" y1="35" x2="50" y2="45"/>
+    <line x1="60" y1="35" x2="60" y2="45"/>
+    <line x1="40" y1="50" x2="40" y2="60"/>
+    <line x1="50" y1="50" x2="50" y2="60"/>
+    <line x1="60" y1="50" x2="60" y2="60"/>
+    
+    <!-- Diagonal connections -->
+    <line x1="40" y1="40" x2="50" y2="50"/>
+    <line x1="50" y1="40" x2="60" y2="50"/>
+    <line x1="45" y1="35" x2="55" y2="45"/>
+  </g>
+  
+  <!-- Neural Nodes -->
+  <g fill="url(#circuitGradient)">
+    <circle cx="40" cy="40" r="3"/>
+    <circle cx="50" cy="40" r="3"/>
+    <circle cx="60" cy="40" r="3"/>
+    <circle cx="40" cy="50" r="3"/>
+    <circle cx="50" cy="50" r="3"/>
+    <circle cx="60" cy="50" r="3"/>
+  </g>
+  
+  <!-- Central AI Core -->
+  <circle cx="50" cy="45" r="6" fill="white" stroke="url(#circuitGradient)" stroke-width="2"/>
+  <text x="50" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="url(#brainGradient)">AI</text>
+  
+  <!-- Pulsing Effect -->
+  <circle cx="50" cy="50" r="35" fill="none" stroke="url(#circuitGradient)" stroke-width="1" opacity="0.3">
+    <animate attributeName="r" values="35;40;35" dur="2s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.3;0.1;0.3" dur="2s" repeatCount="indefinite"/>
+  </circle>
+</svg>
