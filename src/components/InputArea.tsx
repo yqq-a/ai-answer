@@ -11,7 +11,7 @@ const InputArea: React.FC<InputAreaProps> = ({ onSendMessage, isLoading }) => {
   useEffect(() => {
     if (textareaRef.current) {
       textareaRef.current.style.height = 'auto';
-      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+      textareaRef.current.style.height = Math.min(textareaRef.current.scrollHeight, 120) + 'px';
     }
   }, [inputValue]);
 
@@ -30,113 +30,97 @@ const InputArea: React.FC<InputAreaProps> = ({ onSendMessage, isLoading }) => {
     }
   };
 
-  const handleVoiceRecord = () => {
-    // 这里可以实现语音录制功能
+  const handleVoiceToggle = () => {
     setIsRecording(!isRecording);
-    // 模拟录制状态
-    if (!isRecording) {
-      setTimeout(() => setIsRecording(false), 3000);
-    }
+    // 这里可以添加语音识别功能
+  };
+
+  const handleFileUpload = () => {
+    // 这里可以添加文件上传功能
+    console.log('文件上传功能待实现');
   };
 
   return (
-    <div className="relative">
-      {/* Quick Actions */}
-      <div className="flex items-center space-x-2 mb-3">
-        <button className="flex items-center space-x-2 px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-full text-sm text-gray-600 transition-colors">
-          <span>💡</span>
-          <span>提示</span>
+    <form onSubmit={handleSubmit} className="relative">
+      <div className="flex items-end space-x-3 p-4 bg-white border border-gray-300 rounded-2xl shadow-sm focus-within:border-primary-500 focus-within:ring-2 focus-within:ring-primary-200 transition-all">
+        {/* 附件按钮 */}
+        <button
+          type="button"
+          onClick={handleFileUpload}
+          className="flex-shrink-0 p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+          title="上传文件"
+        >
+          <Paperclip className="w-5 h-5" />
         </button>
-        <button className="flex items-center space-x-2 px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-full text-sm text-gray-600 transition-colors">
-          <span>📝</span>
-          <span>写作</span>
-        </button>
-        <button className="flex items-center space-x-2 px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-full text-sm text-gray-600 transition-colors">
-          <span>💻</span>
-          <span>编程</span>
-        </button>
-        <button className="flex items-center space-x-2 px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-full text-sm text-gray-600 transition-colors">
-          <span>🎨</span>
-          <span>创意</span>
-        </button>
-      </div>
 
-      {/* Input Form */}
-      <form onSubmit={handleSubmit} className="relative">
-        <div className="flex items-end space-x-3 p-4 bg-white border border-gray-300 rounded-2xl focus-within:border-primary-500 focus-within:ring-2 focus-within:ring-primary-500/20 transition-all">
-          {/* Attachment Button */}
-          <button
-            type="button"
-            className="flex-shrink-0 p-2 text-gray-500 hover:text-primary-500 transition-colors"
-            title="附件"
-          >
-            <Paperclip className="w-5 h-5" />
-          </button>
-
-          {/* Text Input */}
+        {/* 输入框 */}
+        <div className="flex-1">
           <textarea
             ref={textareaRef}
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="输入你的问题... (Shift + Enter 换行)"
-            className="flex-1 resize-none outline-none bg-transparent text-gray-900 placeholder-gray-500 min-h-[24px] max-h-32"
-            rows={1}
+            placeholder={isLoading ? "AI正在回复中..." : "输入消息... (按Enter发送，Shift+Enter换行)"}
             disabled={isLoading}
+            className="w-full resize-none border-0 outline-none placeholder-gray-400 text-gray-900 bg-transparent"
+            style={{ minHeight: '24px', maxHeight: '120px' }}
+            rows={1}
           />
-
-          {/* Action Buttons */}
-          <div className="flex items-center space-x-2">
-            {/* Voice Record Button */}
-            <button
-              type="button"
-              onClick={handleVoiceRecord}
-              className={`p-2 rounded-lg transition-colors ${
-                isRecording 
-                  ? 'bg-red-500 text-white' 
-                  : 'text-gray-500 hover:text-primary-500'
-              }`}
-              title={isRecording ? '停止录音' : '语音输入'}
-            >
-              {isRecording ? (
-                <Square className="w-5 h-5" />
-              ) : (
-                <Mic className="w-5 h-5" />
-              )}
-            </button>
-
-            {/* Send Button */}
-            <button
-              type="submit"
-              disabled={!inputValue.trim() || isLoading}
-              className={`p-2 rounded-lg transition-all ${
-                inputValue.trim() && !isLoading
-                  ? 'bg-primary-500 text-white hover:bg-primary-600 shadow-lg hover:shadow-xl transform hover:scale-105' 
-                  : 'bg-gray-200 text-gray-400 cursor-not-allowed'
-              }`}
-              title="发送消息"
-            >
-              <Send className="w-5 h-5" />
-            </button>
-          </div>
         </div>
 
-        {/* Recording Indicator */}
-        {isRecording && (
-          <div className="absolute -top-12 left-4 right-4 bg-red-500 text-white px-4 py-2 rounded-lg flex items-center space-x-2">
-            <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
-            <span className="text-sm">正在录音...</span>
-          </div>
-        )}
-      </form>
+        {/* 语音按钮 */}
+        <button
+          type="button"
+          onClick={handleVoiceToggle}
+          className={`flex-shrink-0 p-2 rounded-lg transition-colors ${
+            isRecording 
+              ? 'text-red-600 bg-red-50 hover:bg-red-100' 
+              : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
+          }`}
+          title={isRecording ? "停止录音" : "语音输入"}
+        >
+          {isRecording ? (
+            <Square className="w-5 h-5 fill-current" />
+          ) : (
+            <Mic className="w-5 h-5" />
+          )}
+        </button>
 
-      {/* Tips */}
-      <div className="mt-3 text-center">
-        <p className="text-xs text-gray-500">
-          AI会尽力提供准确信息，但请验证重要内容的准确性
-        </p>
+        {/* 发送按钮 */}
+        <button
+          type="submit"
+          disabled={!inputValue.trim() || isLoading}
+          className={`flex-shrink-0 p-2 rounded-lg transition-all ${
+            inputValue.trim() && !isLoading
+              ? 'text-white bg-primary-500 hover:bg-primary-600 shadow-lg hover:shadow-xl transform hover:scale-105'
+              : 'text-gray-400 bg-gray-100 cursor-not-allowed'
+          }`}
+          title="发送消息"
+        >
+          <Send className="w-5 h-5" />
+        </button>
       </div>
-    </div>
+
+      {/* 输入提示 */}
+      <div className="flex items-center justify-between mt-2 px-2">
+        <div className="flex items-center space-x-4 text-xs text-gray-500">
+          <span>支持 Markdown 格式</span>
+          <span>•</span>
+          <span>最大 2000 字符</span>
+        </div>
+        
+        <div className="text-xs text-gray-500">
+          {inputValue.length}/2000
+        </div>
+      </div>
+
+      {/* 快捷键提示 */}
+      {inputValue && (
+        <div className="absolute -top-8 right-0 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-75">
+          Enter 发送 • Shift+Enter 换行
+        </div>
+      )}
+    </form>
   );
 };
 
